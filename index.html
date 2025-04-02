@@ -253,6 +253,28 @@
     color: #B22222; /* Vermelho para recompensas importantes e stats */
     font-weight: bold; /* negrito, para destaque */
 	}
+	
+	.version-switch {
+		margin: 20px 0; /* Margem superior e inferior */
+		text-align: center; /* Centraliza os botões */
+		}
+
+	.version-button {
+		display: inline-block;
+		background-color: var(--primary-color); /* Usando a cor primária definida */
+		color: white;
+		padding: 10px 15px; /* Ajuste o padding conforme necessário */
+		border-radius: 5px;
+		text-decoration: none; /* Remove o sublinhado do link */
+		margin: 0 10px; /* Margem entre os botões */
+		transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+		}
+
+	.version-button:hover {
+		background-color: #165e55; /* Cor ao passar o mouse (ajuste conforme preferir) */
+		}
+
+
 </style>
 </head>
 <body>
@@ -306,6 +328,13 @@
 		<br>
 		OBS. O jogo rotaciona/inverte os mapas, mas o layout continua parecido!
 		<br>
+		<br>
+		OBS. Você está vendo a versão MOBILE do site, caso esteja no PC troque clicando no botão abaixo
+		<div class="version-switch">
+			<a href="https://dougfunny11.github.io/poe2/" class="version-button" target="_blank">Versão PC</a>
+			<a href="https://dougfunny11.github.io/poe2mobile/" class="version-button" target="_blank">Versão Mobile</a>
+		</div>
+		<br>
         <h2 id="ato1">--== ATO 1 ==--</h2>
 		<br>
 		<div class="task-item location tooltip">
@@ -340,6 +369,8 @@
 			<span class="tooltiptext">
 			<img src="images/clearfell.jpg" alt="Clearfell" style="max-width: 110%; height: auto;">
 			<br>
+				
+				<br>
 			</span>
 		</div>
 		<br>
@@ -1853,6 +1884,7 @@
 			<span class="tooltiptext">
 			<img src="images/clearfell.jpg" alt="Clearfell" style="max-width: 100%; height: auto;">
 			<br>
+				
 			</span>
 		</div>
         <br>

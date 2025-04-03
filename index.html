@@ -7,273 +7,291 @@
     <title>Em busca da felicidade - vamo doando</title>
     <link rel="icon" href="images/beta.png" type="image/png">
     <meta http-equiv="Content-Language" content="pt-BR">
-<style>
-    :root {
-		--primary-color: #208C80;
-		--hover-color: #f0f0f0;
-		--completed-color: #888;
-		--background-color: #f7f7f7;
-		--text-color: #333;
-		--dark-background-color: #222;
-		--dark-text-color: #eee;
-		--dark-hover-color: #555;
-		--dark-primary-color: #3B9A94;
-		--dark-orange: #D95D09; /* Cor para mob/boss */
-		--green: #008000; /* Cor para item de quest */
-		--yellow: #FFEA00;
-		--blue: #007bff; /* Azul para mapa atual */
-		--purple: #9b59b6; /* Roxo para NPC */
-		--active-act-color: #FFD700; /* Cor para o ato ativo */
-		--border-color: #A0A0A0;
-		--dark-border-color: #555;
-		--light-blue: #20B2AA; /* Azul claro para recompensas simples e gemas */
-		--red: #B22222; /* Vermelho para recompensas importantes e stats */
-	}
+    <style>
+        :root {
+            --primary-color: #208C80;
+            --hover-color: #f0f0f0;
+            --completed-color: #888;
+            --background-color: #f7f7f7;
+            --text-color: #333;
+            --dark-background-color: #222;
+            --dark-text-color: #eee;
+            --dark-hover-color: #555;
+            --dark-primary-color: #3B9A94;
+            --dark-orange: #D95D09; 
+            --green: #008000; 
+            --yellow: #FFEA00;
+            --blue: #007bff; 
+            --purple: #9b59b6; 
+            --active-act-color: #FFD700; 
+            --border-color: #A0A0A0;
+            --dark-border-color: #555;
+            --light-blue: #20B2AA; 
+            --red: #B22222; 
+        }
 
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.4;
+            margin: 0;
+            display: flex;
+            background-color: var(--background-color);
+            transition: background-color 0.3s, color 0.3s;
+            position: relative;
+            height: 100vh; 
+        }
 
-    body {
-        font-family: Arial, sans-serif;
-        line-height: 1.4;
-        margin: 0;
-        display: flex;
-        background-color: var(--background-color);
-        transition: background-color 0.3s, color 0.3s;
-        position: relative;
-        height: 100vh; /* Permite o uso adequado do flexbox */
-    }
-
-    nav {
-        width: 200px;
-        background: var(--primary-color);
-        padding: 10px;
-        height: auto; /* Altura automática para ajustar ao conteúdo */
-        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-        position: sticky; /* Mantém o painel fixo enquanto rola */
-        top: 0; /* Mantém no topo */
-        border-radius: 5px;
-    }
-
-    nav ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    nav ul li {
-        margin: 5px 0;
-    }
-
-    nav ul li a {
-        color: #fff;
-        text-decoration: none;
-        border: 2px solid transparent;
-        padding: 5px;
-        border-radius: 5px;
-        transition: border-color 0.3s; 
-    }
-
-    nav ul li a:hover {
-        border-color: #F0E68C; 
-    }
-
-    .content {
-        flex: 1;  /* Preenche todo o espaço restante */
-        padding: 15px;
-        overflow-y: auto; /* Adiciona rolagem apenas onde necessário */
-        box-sizing: border-box; 
-    }
-
-    h1 {
-        color: var(--text-color);
-        margin: 5px 0;
-    }
-
-    h2 {
-        color: var(--text-color);
-        margin: 5px 0;
-        border: 1px solid var(--primary-color);
-        padding: 8px;
-        border-radius: 5px; 
-        text-align: center; 
-    }
-
-    .task-item {
-        margin-bottom: 5px;
-        padding: 8px;
-        border-radius: 5px; 
-        cursor: pointer; 
-    }
-
-    .task-item input[type="checkbox"] {
-        margin-right: 8px;
-        cursor: pointer;
-    }
-
-    .task-item.checked {
-        text-decoration: line-through;
-        color: var(--completed-color);
-    }
-
-    .location {
-        font-size: 1em;  
-        color: var(--blue); 
-        margin: 15px 0 5px;
-        text-decoration: none; 
-        font-style: italic; 
-    }
-
-    .task-item:hover {
-        background-color: var(--hover-color);
-    }
-
-    .mob {
-        color: var(--dark-orange);
-        font-weight: bold;
-    }
-
-    .item {
-        color: var(--green);
-        font-weight: bold;
-    }
-
-    .npc {
-        color: var(--purple);
-        font-weight: bold; 
-    }
-
-    .dark-mode {
-        background-color: var(--dark-background-color);
-        color: var(--dark-text-color);
-    }
-
-    .dark-mode nav {
-        background: var(--dark-primary-color);
-    }
-
-    .dark-mode .task-item:hover {
-        background-color: var(--dark-hover-color);
-    }
-
-    .mode-toggle, .acto-button {
-        display: block;
-        background-color: var(--primary-color);
-        color: white;
-        padding: 5px 10px;
-        text-align: center;
-        border-radius: 5px;
-        margin: 5px 0;
-        border: 2px solid transparent; 
-        transition: border-color 0.3s; 
-    }
-
-    .mode-toggle:hover, .acto-button:hover {
-        background-color: #165e55;
-        border-color: #F0E68C; 
-    }
-
-    .tooltip {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-    }
-
-    .tooltip .tooltiptext {
-        visibility: hidden;
-        width: 400px; 
-        background-color: #000000; /* Cor de fundo escura sem transparência */
-		color: #FFD700; /* Cor do texto em amarelo (amarelo ouro) */
-        text-align: center;
-        border-radius: 6px;
-        padding: 5px;
-        position: absolute;
-        z-index: 1;
-        bottom: 125%; 
-        left: 50%;
-        transform: translateX(50%); /* Ajuda a centralizar a tooltip em relação ao elemento do tooltip */
-		opacity: 0;
-		transition: opacity 0.3s;
-    }
-
-    .tooltip:hover .tooltiptext {
-        visibility: visible;
-        opacity: 1;
-    }
-
-    .made-by {
-        position: fixed;
-        bottom: 10px; 
-        left: 10px; 
-        color: white;
-        font-size: 0.8em;
-        display: flex;
-        align-items: center; 
-    }
-
-    .made-by img {
-        height: 1em; 
-        margin-left: 5px; 
-    }
-
-    .spacer {
-        margin-top: 50px; 
-    }
-
-    .tooltip.toggle-tips {
-        display: block;
-        background-color: var(--primary-color);
-        color: white;
-        padding: 5px 10px;
-        text-align: center;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        border: 2px solid transparent; 
-        transition: border-color 0.3s, background-color 0.3s; 
-    }
-
-    .tooltip.toggle-tips:hover {
-        background-color: #165e55;
-        border-color: #F0E68C; 
-    }
-
-    @media (max-width: 600px) {
         nav {
-            width: 100%;
-            position: sticky;
-            top: 0;
-        }
-        .content {
+            width: 200px;
+            background: var(--primary-color);
             padding: 10px;
+            height: auto; 
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            position: sticky; 
+            top: 0;
+            border-radius: 5px;
         }
-    }
-	.recompensa {
-    color: var(--light-blue); /* Azul claro para recompensas simples e gemas */
-    font-weight: bold; /* Opcional, para destaque */
-	}
-	
-	.recompensastats {
-    color: #B22222; /* Vermelho para recompensas importantes e stats */
-    font-weight: bold; /* negrito, para destaque */
-	}
-	
-	.version-switch {
-		margin: 20px 0; /* Margem superior e inferior */
-		text-align: center; /* Centraliza os botões */
-		}
 
-	.version-button {
-		display: inline-block;
-		background-color: var(--primary-color); /* Usando a cor primária definida */
-		color: white;
-		padding: 10px 15px; /* Ajuste o padding conforme necessário */
-		border-radius: 5px;
-		text-decoration: none; /* Remove o sublinhado do link */
-		margin: 0 10px; /* Margem entre os botões */
-		transition: background-color 0.3s; /* Transição suave para a cor de fundo */
-		}
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
 
-	.version-button:hover {
-		background-color: #165e55; /* Cor ao passar o mouse (ajuste conforme preferir) */
-		}
+        nav ul li {
+            margin: 5px 0;
+        }
 
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            border: 2px solid transparent;
+            padding: 5px;
+            border-radius: 5px;
+            transition: border-color 0.3s; 
+        }
+
+        nav ul li a:hover {
+            border-color: #F0E68C; 
+        }
+
+        .content {
+            flex: 1;  
+            padding: 15px;
+            overflow-y: auto; 
+            box-sizing: border-box; 
+        }
+
+        h1 {
+            color: var(--text-color);
+            margin: 5px 0;
+        }
+
+        h2 {
+            color: var(--text-color);
+            margin: 5px 0;
+            border: 1px solid var(--primary-color);
+            padding: 8px;
+            border-radius: 5px; 
+            text-align: center; 
+        }
+
+        .task-item {
+            margin-bottom: 5px;
+            padding: 8px;
+            border-radius: 5px; 
+            cursor: pointer; 
+        }
+
+        .task-item input[type="checkbox"] {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .task-item.checked {
+            text-decoration: line-through;
+            color: var(--completed-color);
+        }
+
+        .location {
+            font-size: 1em;  
+            color: var(--blue); 
+            margin: 15px 0 5px;
+            text-decoration: none; 
+            font-style: italic; 
+        }
+
+        .task-item:hover {
+            background-color: var(--hover-color);
+        }
+
+        .mob {
+            color: var(--dark-orange);
+            font-weight: bold;
+        }
+
+        .item {
+            color: var(--green);
+            font-weight: bold;
+        }
+
+        .npc {
+            color: var(--purple);
+            font-weight: bold; 
+        }
+
+        .dark-mode {
+            background-color: var(--dark-background-color);
+            color: var(--dark-text-color);
+        }
+
+        .dark-mode nav {
+            background: var(--dark-primary-color);
+        }
+
+        .dark-mode .task-item:hover {
+            background-color: var(--dark-hover-color);
+        }
+
+        .mode-toggle, .acto-button {
+            display: block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            border-radius: 5px;
+            margin: 5px 0;
+            border: 2px solid transparent; 
+            transition: border-color 0.3s, background-color 0.3s; 
+        }
+
+        .mode-toggle:hover, .acto-button:hover, .cronometro-button:hover {
+            background-color: #165e55;
+            border-color: #F0E68C; 
+        }
+
+		.cronometro-button {
+			background-color: var(--primary-color);
+            color: white;
+            padding: 0px 4px;
+            text-align: center;
+            border-radius: 5px;
+            margin: 5px 0;          /* Margem compacta entre os botões */
+            border: 2px solid transparent; 
+            transition: border-color 0.3s, background-color 0.3s; 
+			font-size: 15px;
+		}
+			
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 400px; 
+            background-color: #000000; 
+            color: #FFD700; 
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; 
+            left: 50%;
+            transform: translateX(50%); 
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .made-by {
+            position: fixed;
+            bottom: 10px; 
+            left: 10px; 
+            color: white;
+            font-size: 0.8em;
+            display: flex;
+            align-items: center; 
+        }
+
+        .made-by img {
+            height: 1em; 
+            margin-left: 5px; 
+        }
+
+        .spacer {
+            margin-top: 50px; 
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                width: 100%;
+                position: sticky;
+                top: 0;
+            }
+            .content {
+                padding: 10px;
+            }
+        }
+
+        .recompensa {
+            color: var(--light-blue); 
+            font-weight: bold; 
+        }
+
+        .recompensastats {
+            color: #B22222; 
+            font-weight: bold; 
+        }
+
+        .version-switch {
+            margin: 20px 0; 
+            text-align: center; 
+        }
+
+        .version-button {
+            display: inline-block;
+            background-color: var(--primary-color); 
+            color: white;
+            padding: 10px 15px; 
+            border-radius: 5px;
+            text-decoration: none; 
+            margin: 0 10px; 
+            transition: background-color 0.3s; 
+        }
+
+        .version-button:hover {
+            background-color: #165e55; 
+        }
+
+        #timer {
+            font-size: 1.5em; 
+			text-align: center;
+            margin-bottom: 10px; /* Ajustado para espaçamento com os botões */
+        }
+		
+		.tooltip.toggle-tips {
+			display: block;
+			background-color: var(--primary-color); /* Usando a cor primária definida */
+			color: white;
+			padding: 5px 10px; /* O mesmo padding dos outros botões */
+			text-align: center;
+			border-radius: 5px;
+			margin: 5px 0; /* Margem, igual aos outros botões */
+			border: 2px solid transparent; 
+			transition: border-color 0.3s, background-color 0.3s; 
+			position: relative; /* Garante que tenha um contexto de posição */
+		}
+		
+		.tooltip.toggle-tips:hover {
+			background-color: #165e55; /* Cor ao passar o mouse, igual aos outros botões */
+			border-color: #F0E68C; 
+		}
 
 </style>
 </head>
@@ -289,8 +307,15 @@
 		<a href="#ato1-cruel" class="acto-button">ATO 1 CRUEL</a>
 		<a href="#ato2-cruel" class="acto-button">ATO 2 CRUEL</a>
 		<a href="#ato3-cruel" class="acto-button">ATO 3 CRUEL</a>
-    </nav>
-
+	<br>
+		<div class="content">
+			<div id="timer">00:00:00</div>
+			<button class="cronometro-button" id="startButton">Iniciar</button>
+			<button class="cronometro-button" id="pauseButton">Pausar</button>
+			<button class="cronometro-button" id="resetButton">Reset</button>
+			</nav>
+		</div>
+	<br>
     <div class="content">
         <h1>DETONADO POE 2 CAMPANHA</h1> 
         <div class="tooltip">
@@ -440,7 +465,10 @@
 			<a href="images/theredvale.jpg" target="_blank" class="tooltip">The Red Vale</a>
 			<span class="tooltiptext">
 			<img src="images/theredvale.jpg" alt="The Red Vale" style="max-width: 130%; height: auto;">
-			<br>Semi-círculo
+			<br>
+				Obeliscos spawnam em um Padrão de Triângulo
+				<br>
+				1.	Faça um Semi-círculo
 			</span>
 		</div>
         <br>
@@ -620,7 +648,7 @@
 		<br>
 		<label class="task-item tooltip">
 			<input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-			Realize todos os 4 rituais, matando o <span class="mob">The King in the Mists</span> no final. Reward: <span class="recompensastats"> +30 spirit</span>, <span class="recompensa"> level 4 Uncut Spirit Gem 
+			Realize todos os 4 rituais, matando o <span class="mob">The King in the Mists</span> no final. Reward: <span class="recompensa"> level 4 Uncut Spirit Gem </span>, <span class="recompensastats"> +30 spirit</span>
 			<span class="tooltiptext">
 			Debuff VERMELHO: fique PARADO para não tomar freeze
 			<br>
@@ -696,7 +724,7 @@
         <br>
         <label class="task-item">
             <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-            <span class="tooltip">Encontre e mate <span class="mob">Candlemass, the Living Rite</span> Reward: <span class="recompensastats"> +maximum life</span>
+            <span class="tooltip">Encontre e mate <span class="mob">Candlemass, the Living Rite</span> Reward: <span class="recompensastats"> +20 Maximum Life</span>
 			<span class="tooltiptext">
 			<img src="images/oghammanor.jpg" alt="Ogham Manor" style="max-width: 130%; height: auto;">
 			<br>
@@ -770,7 +798,7 @@
     <br>
     <label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        Portal de volta ao acampamento, fale com <span class="npc">Zarka</span> e suba na The Ardura Caravan.
+        Portal de volta ao acampamento, fale com <span class="npc">Zarka</span> e suba na The Ardura Caravan. Reward: <span class="recompensa">level 5 Uncut Skill</span>
     </label>
     <br>
 	<div class="task-item location tooltip">
@@ -840,7 +868,7 @@
     <br>
     <label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        Fale com <span class="npc">Risu</span> e com <span class="npc">Asala</span>, e use o mapa do deserto para ir a <span class="location">The Halani Gates</span>.
+        Fale com <span class="npc">Risu</span> e com <span class="npc">Asala</span>, e use o mapa do deserto para ir à <span class="location">The Halani Gates</span>
     </label>
     <br>
     <label class="task-item">
@@ -850,7 +878,7 @@
     <br>
     <label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        Use o mapa do deserto para ir a <span class="location">Traitor's Passage</span>.
+        Use o mapa do deserto para ir à <span class="location">Traitor's Passage</span>.
     </label>
     <br>
 	<div class="task-item location tooltip">
@@ -882,12 +910,14 @@
 				1.	Sentido oposto da entrada, geralmente para sudeste
 				<br>
 				2.	Padrão S (vai para um lado e para o outro, zigue-zague)
+				<br>
+				3.	Vá pela borda do cânion, evite deixar a NPC para trás ela pode parar em algum pack de mobs
 			</span>
 		</div>
     <br>
     <label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        Encontre e mate <span class="mob">Jamanra, the Risen King</span>. Fique perto do cânion. Atravesse o cânion 3 vezes para encontrar o boss.
+        Encontre e mate <span class="mob">Jamanra, the Risen King</span>
     </label>
     <br>
     <label class="task-item">
@@ -915,12 +945,12 @@
 	<br>
 	<label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        (Opcional) Faça o trial para ganhar pontos de ascendência
+        Faça o trial para ganhar Reward: <span class="recompensastats">2 pontos de ascendência</span>
 	</label>	
 	<br>
 	<label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        Use o mapa do deserto para ir a <span class="location">Keth</span>
+        TP e use o mapa do deserto para ir à <span class="location">Keth</span>
 	</label>
     <br>
     <div class="task-item location tooltip">
@@ -1001,10 +1031,12 @@
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
         (Opcional) Clique no sarcófago e sobreviva. Reward: <span class="recompensa">Uncut Support Gem</span>
     </label>
+	<br>
 	<label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
         Encontre e siga para <span class="location">Heart of Keth</span>
     </label>
+	<br>
 	<label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
         Mate <span class="mob">Azarian, the Forsaken Son</span> em <span class="location">Buried Shrines</span>
@@ -1030,7 +1062,7 @@
     <br>
     <label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        Use o mapa do deserto para ir a <span class="location">Mastodon Badlands</span>.
+        Use o mapa do deserto para ir à <span class="location">Mastodon Badlands</span>.
     </label>
     <br>
     <div class="task-item location tooltip">
@@ -1085,7 +1117,7 @@
     <br>
     <label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        Use o mapa do deserto para ir a <span class="location">Valley of the Titans</span>.
+        Use o mapa do deserto para ir ao <span class="location">Valley of the Titans</span>.
     </label>
     <br>
     <div class="task-item location tooltip">
@@ -1259,7 +1291,7 @@
     <br>
     <label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        Fale com todos os <span class="npc">NPCs</span>, depois use o mapa do deserto para ir a <span class="location">The Dreadnought</span>.
+        Fale com todos os <span class="npc">NPCs</span>, depois use o mapa do deserto para ir ao <span class="location">The Dreadnought</span>.
     </label>
     <br>
     <div class="task-item location tooltip">
@@ -1486,7 +1518,7 @@
 	<br>
 	<label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        (Opcional) Waypoint de volta ao Trial of Chaos, e o faça para ganhar pontos de ascendência
+        Waypoint de volta ao Trial of Chaos, faça-o para ganhar Reward: <span class="recompensastats">2 pontos de ascendência</span>
     </label>
     <br>
     <div class="task-item location tooltip">
@@ -1944,7 +1976,10 @@
 			<a href="images/theredvale.jpg" target="_blank" class="tooltip">The Red Vale</a>
 			<span class="tooltiptext">
 			<img src="images/theredvale.jpg" alt="The Red Vale" style="max-width: 130%; height: auto;">
-			<br>Semi-círculo
+			<br>
+				Obeliscos spawnam em um Padrão de Triângulo
+				<br>
+				1.	Faça um Semi-círculo
 			</span>
 		</div>
         <br>
@@ -2124,7 +2159,7 @@
         <br>
         <label class="task-item tooltip">
 			<input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-			<s>Realize todos os 4 rituais, matando o <span class="mob">The King in the Mists</span> no final. Reward: <span class="recompensastats"> +30 spirit</span>, <span class="recompensa"> level 4 Uncut Spirit Gem </s>
+			<s>Realize todos os 4 rituais, matando o <span class="mob">The King in the Mists</span> no final. Reward: <span class="recompensa"> level 4 Uncut Spirit Gem</span> , <span class="recompensastats"> +30 spirit</span> </s>
 			<span class="tooltiptext">
 			Debuff VERMELHO: fique PARADO para não tomar freeze
 			<br>
@@ -2195,7 +2230,7 @@
         <br>
         <label class="task-item">
             <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-            <span class="tooltip">Encontre e mate <span class="mob">Candlemass, the Living Rite</span> Reward: <span class="recompensastats"> +maximum life</span>
+            <span class="tooltip">Encontre e mate <span class="mob">Candlemass, the Living Rite</span> Reward: <span class="recompensastats">+8% Maximum Life</span>
 			<span class="tooltiptext">
 			<img src="images/oghammanor.jpg" alt="Ogham Manor" style="max-width: 130%; height: auto;">
 			<br>
@@ -2269,7 +2304,7 @@
     <br>
     <label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        Portal de volta ao acampamento, fale com <span class="npc">Zarka</span> e suba na The Ardura Caravan.
+        Portal de volta ao acampamento, fale com <span class="npc">Zarka</span> e suba na The Ardura Caravan. Reward: <span class="recompensa">level 13 Uncut Skill Gem</span>
     </label>
     <br>
     <div class="task-item location tooltip">
@@ -2339,7 +2374,7 @@
     <br>
     <label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        Fale com <span class="npc">Risu</span> e com <span class="npc">Asala</span>, e use o mapa do deserto para ir a <span class="location">The Halani Gates</span>.
+        Fale com <span class="npc">Risu</span> e com <span class="npc">Asala</span>, e use o mapa do deserto para ir a <span class="location">The Halani Gates</span>
     </label>
     <br>
     <label class="task-item">
@@ -2349,7 +2384,7 @@
     <br>
     <label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        Use o mapa do deserto para ir a <span class="location">Traitor's Passage</span>.
+        Use o mapa do deserto para ir à <span class="location">Traitor's Passage</span>.
     </label>
     <br>
     <div class="task-item location tooltip">
@@ -2381,12 +2416,14 @@
 				1.	Sentido oposto da entrada, geralmente para sudeste
 				<br>
 				2.	Padrão S (vai para um lado e para o outro, zigue-zague)
+				<br>
+				3.	Vá pela borda do cânion, evite deixar a NPC para trás ela pode parar em algum pack de mobs
 			</span>
 		</div>
     <br>
     <label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        Encontre e mate <span class="mob">Jamanra, the Risen King</span>. Fique perto do cânion. Atravesse o cânion 3 vezes para encontrar o boss.
+        Encontre e mate <span class="mob">Jamanra, the Risen King</span>
     </label>
 	<br>
     <label class="task-item">
@@ -2409,7 +2446,7 @@
     <br>
     <label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        Pegue o waypoint, fale os <span class="npc">NPCs</span>, depois use o mapa do deserto para ir a <span class="location">Keth</span>.
+        Pegue o waypoint, fale os <span class="npc">NPCs</span>, depois use o mapa do deserto para ir à <span class="location">Keth</span>
     </label>
     <br>
     <div class="task-item location tooltip">
@@ -2490,10 +2527,12 @@
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
         (Opcional) Clique no sarcófago e sobreviva. Reward: <span class="recompensa">Uncut Support Gem</span>
     </label>
+	<br>
 	<label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
         Encontre e siga para <span class="location">Heart of Keth</span>
     </label>
+	<br>
 	<label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
         Mate <span class="mob">Azarian, the Forsaken Son</span> em <span class="location">Buried Shrines</span>
@@ -2519,7 +2558,7 @@
     <br>
     <label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        Use o mapa do deserto para ir a <span class="location">Mastodon Badlands</span>.
+        Use o mapa do deserto para ir a <span class="location">Mastodon Badlands</span>
     </label>
     <br>
     <div class="task-item location tooltip">
@@ -2574,7 +2613,7 @@
     <br>
     <label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        Use o mapa do deserto para ir a <span class="location">Valley of the Titans</span>.
+        Use o mapa do deserto para ir ao <span class="location">Valley of the Titans</span>.
     </label>
     <br>
     <div class="task-item location tooltip">
@@ -2748,7 +2787,7 @@
     <br>
     <label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        Fale com todos os <span class="npc">NPCs</span>, depois use o mapa do deserto para ir a <span class="location">The Dreadnought</span>.
+        Fale com todos os <span class="npc">NPCs</span>, depois use o mapa do deserto para ir ao <span class="location">The Dreadnought</span>
     </label>
     <br>
     <div class="task-item location tooltip">
@@ -3389,6 +3428,52 @@
             tooltip.addEventListener('mouseout', hideTooltip);
         });
 
+        //cronometro aqui
+		let startTime, updatedTime, difference, tInterval;
+        let running = false;
+        
+		function startTimer() {
+            if (!running) {
+                startTime = new Date().getTime() - (difference || 0); // Use a diferença para continuar de onde parou
+                tInterval = setInterval(updateTimer, 10); // Atualiza a cada 10 milissegundos
+                running = true;
+            }
+        }
+
+        function updateTimer() {
+            updatedTime = new Date().getTime();
+            difference = updatedTime - startTime; // Cálculo da diferença
+            // Calcula horas, minutos, segundos e centésimos
+            let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            let centiseconds = Math.floor((difference % 1000) / 10); // Centésimos de segundo
+
+            // Formata para exibir
+            hours = (hours < 10) ? "0" + hours : hours;
+            minutes = (minutes < 10) ? "0" + minutes : minutes;
+            seconds = (seconds < 10) ? "0" + seconds : seconds;
+            centiseconds = (centiseconds < 10) ? "0" + centiseconds : centiseconds;
+
+            document.getElementById("timer").innerHTML = hours + ":" + minutes + ":" + seconds + "." + centiseconds; // Atualiza a exibição
+        }
+
+        function pauseTimer() {
+            clearInterval(tInterval);
+            running = false; // Marca o cronometro como parado
+        }
+
+        function resetTimer() {
+            clearInterval(tInterval);
+            running = false; // Marca o cronometro como parado
+            difference = 0; // Reseta a diferença
+            document.getElementById("timer").innerHTML = "00:00:00.00"; // Reseta a exibição
+        }
+
+        // Eventos dos botões
+        document.getElementById("startButton").addEventListener("click", startTimer);
+        document.getElementById("pauseButton").addEventListener("click", pauseTimer);
+        document.getElementById("resetButton").addEventListener("click", resetTimer);
     </script>
 </body>
 </html>

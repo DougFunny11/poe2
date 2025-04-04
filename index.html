@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-	<!-- versão 1.25 -->
+	<!-- versão 1.26 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Em busca da felicidade - vamo doando</title>
@@ -19,9 +19,11 @@
             --dark-hover-color: #555;
             --dark-primary-color: #3B9A94;
             --dark-orange: #D95D09; 
+			--hyperlink: #007bff; /* Cor para hyperlinks */
+			--dark-hyperlink: #007bff; /* Cor para hyperlinks no modo escuro */
             --green: #008000; 
-            --yellow: #FFEA00;
-            --blue: #007bff; 
+            --yellow: #FFCC00;
+            --blue: #007bff;  
             --purple: #9b59b6; 
             --active-act-color: #FFD700; 
             --border-color: #A0A0A0;
@@ -261,7 +263,7 @@
             color: white;
             padding: 10px 15px; 
             border-radius: 5px;
-            text-decoration: none; 
+            text-decoration: underline; 
             margin: 0 10px; 
             transition: background-color 0.3s; 
         }
@@ -293,6 +295,17 @@
 			background-color: #165e55; /* Cor ao passar o mouse, igual aos outros botões */
 			border-color: #F0E68C; 
 		}
+
+        a {
+            color: var(--dark-hyperlink); /* Cor padrão do hyperlink no modo escuro */
+            text-decoration: none; /* Remove o sublinhado */
+        }
+
+        a:hover {
+            color: var(--yellow); /* Mantém a mesma cor no hover */
+        }
+
+
 
 </style>
 </head>
@@ -347,18 +360,17 @@
 			<br>Clique para ampliar a imagem
 			</span>
 			
-			<div class="highlight-box" style="border: 2px solid red; background-color: #ffe6e6; padding: 15px; border-radius: 8px; font-size: 1.5em; font-weight: bold; margin-top: 15px;">
+			<div class="highlight-box" style="border: 2px solid red; background-color: #ffe6e6; padding: 15px; border-radius: 8px; font-size: 1.5em; font-weight: bold; margin-top: 15px; color: #000000;">
 			IMPORTANTE: passe o mouse e clique para ver os layouts!
 			</div>
 		</div>
 		<br>
 		OBS. O jogo rotaciona/inverte os mapas, mas o layout continua parecido!
 		<br>
-		<br>
-		OBS. Você está vendo a versão PC do site, caso esteja no SMARTPHONE troque clicando no botão abaixo
-		<div class="version-switch">
-			<a href="https://dougfunny11.github.io/poe2/" class="version-button" target="_blank">Versão PC</a>
-			<a href="https://dougfunny11.github.io/poe2mobile/" class="version-button" target="_blank">Versão Mobile</a>
+		OBS. Você está na versão PC do site, caso queira trocar clique no botão abaixo
+		<div class="version-switch" style="text-align: left;">
+			<a href="https://dougfunny11.github.io/poe2/" class="version-button" target="_blank" style="color: #FFFFFF;">Versão PC</a>
+			<a href="https://dougfunny11.github.io/poe2mobile/" class="version-button" target="_blank" style="color: #CCCCCC;">Versão Mobile</a>
 		</div>
 		<br>
         <h2 id="ato1">--== ATO 1 ==--</h2>
@@ -466,7 +478,7 @@
 			<span class="tooltiptext">
 			<img src="images/theredvale.jpg" alt="The Red Vale" style="max-width: 100%; height: auto;">
 			<br>
-				Obeliscos spawnam em um padrão de Triângulo
+				Os 3 Obeliscos spawnam em um padrão de Triângulo
 				<br>
 				1.	Faça um Semi-círculo
 			</span>
@@ -1992,7 +2004,7 @@
 			<span class="tooltiptext">
 			<img src="images/theredvale.jpg" alt="The Red Vale" style="max-width: 100%; height: auto;">
 			<br>
-				Obeliscos spawnam em um padrão de Triângulo
+				Os 3 Obeliscos spawnam em um padrão de Triângulo
 				<br>
 				1.	Faça um Semi-círculo
 			</span>
@@ -3393,11 +3405,14 @@
     </label>
 	<br>
 	<br>
-	Créditos:
-	<br>
-	Serviram como base para esse guia:
-	guias do mobalytics, reddit do poe2, youtuber lolcohol + campaign codex discord community, poe2way.
+
     <!-- FIM DO ATO 3 Cruel -->
+
+	<p>Créditos:</p>
+	<p>
+    <em>Serviram como base para esse guia: guias do mobalytics, reddit do poe2, youtuber lolcohol + campaign codex discord community, poe2way.</em>
+	</p>
+	
     </div>
 
     <div class="made-by">Feito por grimgamer9 <img src="images/swag.png" alt="swag"></div>

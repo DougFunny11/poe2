@@ -1,0 +1,2664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<!-- v1.0 by grimgamer9 game version 0.3.0 29aug -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>POE2 - Bestiário</title>
+<style>
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: #f0f4f8;
+    color: #333;
+    margin: 20px;
+    line-height: 1.6;
+    font-size: 16px;
+}
+h1 {
+    text-align: center;
+    color: #006064;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+p {
+    max-width: 900px;
+    margin: 0 auto 20px auto;
+    font-size: 1.1em;
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* Separação entre atos */
+.act-separator {
+    border-top: 2px solid #006064;
+    margin: 40px 0 20px 0;
+}
+
+/* Legenda de tipos de dano */
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0;
+    font-size: 1em;
+    font-weight: 600;
+}
+.legend span {
+    padding: 6px 12px;
+    border-radius: 8px;
+    display: inline-block;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Container dos bosses */
+.boss-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Cada boss */
+.boss {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s, transform 0.2s;
+}
+.boss:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+.boss-title {
+    font-weight: 700;
+    font-size: 1.4em;
+    color: #222;
+    margin-bottom: 8px;
+}
+.boss img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-top: 8px;
+}
+.damage-types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+    font-size: 0.95em;
+}
+.damage-type {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: #fff;
+}
+.physical { background-color: #757575; }
+.fire { background-color: #d84315; }
+.cold { background-color: #0288d1; }
+.lightning { background-color: #fbc02d; color: #222; }
+.chaos { background-color: #7b1fa2; }
+
+.attributes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 12px;
+}
+.attribute-column h3 {
+    margin-top: 0;
+    font-size: 1em;
+    margin-bottom: 8px;
+    color: #006064;
+}
+ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style-type: disc;
+    font-size: 0.95em;
+}
+.note {
+    font-size: 0.85em;
+    color: #555;
+    margin-top: 8px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    text-align: left;
+}
+th {
+    background-color: #eef;
+}
+h2 {
+    margin-top: 40px;
+    color: #006064;
+    padding-left: 10px;
+}
+</style>
+</head>
+<body>
+
+<h1>POE 2 Bestiário</h1>
+<p>
+    Praticamente todos os bosses e mini-bosses tem alguma resistência e causam dano <span class="physical">Físico</span> . 
+	<br>
+	A maioria também causa dano de <span class="fire">Fogo</span>.
+    <br>
+    Caso esteja com dificuldades para matar um BOSS específico equipe gear com RESISTÊNCIAS e CHARM(S) no cinto para mitigar o tipo específico de dano causado.
+</p>
+
+<div class="legend">
+    <strong>Tipos de dano:</strong>
+    <span class="damage-type physical">Físico</span>
+	<span class="damage-type fire">Fogo</span>
+    <span class="damage-type cold">Gelo</span>
+    <span class="damage-type lightning">Elétrico</span>
+	<span class="damage-type chaos">Caótico</span>
+</div>
+
+<div class="boss-container">
+
+<!-- Ato 1 -->
+
+<div class="act-separator"></div>
+<h2 style="text-align: center; margin: 0;">ATO 1</h2>
+<div class="act-separator"></div>
+
+<!-- The Bloated Miller -->
+<div class="boss">
+    <div class="boss-title">The Bloated Miller</div>
+    <img src="images/bloated miller.jpg" alt="The Bloated Miller" />
+    <div class="damage-types">Dano: 
+        
+		<div class="damage-type physical">Físico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>The Riverbank</td>
+            <td>Mercy for the Miller main quest completion</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <ul>
+			<h3>Fraquezas</h3>
+            <li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+			<li></li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: Beira of the Rotten Pack -->
+<div class="boss">
+    <div class="boss-title">Beira of the Rotten Pack</div>
+    <img src="images/Beira of the Rotten Pack.jpg" alt="Beira of the Rotten Pack" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type cold">Gelo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Clearfell</td>
+            <td>Head of the Winter Wolf (+10% to Cold resistance)</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li>Fogo</li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li>Gelo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: The Devourer -->
+<div class="boss">
+    <div class="boss-title">The Devourer</div>
+    <img src="images/The Devourer.jpg" alt="The Devourer" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type chaos">Caótico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Mud Burrow (Clearfell)</td>
+            <td>Uncut Skill Gem</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: The Brambleghast -->
+<div class="boss">
+    <div class="boss-title">The Brambleghast</div>
+    <img src="images/The Brambleghast.jpg" alt="The Brambleghast" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type chaos">Caótico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Grelwood</td>
+            <td>Uncut Skill Gem</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li>Fogo</li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li>Gelo</li>
+        </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: Areagne, the Forgotten Witch -->
+<div class="boss">
+    <div class="boss-title">Areagne, the Forgotten Witch</div>
+    <img src="images/Areagne.jpg" alt="Areagne, the Forgotten Witch" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type cold">Gelo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Grelwood</td>
+            <td>Uncut Support Gem</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: The Rust King -->
+<div class="boss">
+    <div class="boss-title">The Rust King</div>
+    <img src="images/The Rust King.jpg" alt="The Rust King" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Red Vale</td>
+            <td>Uncut Skill Gem</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li>Elétrico</li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li>Fogo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: Ervid, the Rotten Druid -->
+<div class="boss">
+    <div class="boss-title">Ervid, the Rotten Druid</div>
+    <img src="images/Ervid, the Rotten Druid.jpg" alt="Ervid, the Rotten Druid" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type chaos">Caótico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Grimwood Tangle (Grelwood)</td>
+            <td>Uncut Support Gem</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: Asina, the Praetor’s Consort -->
+<div class="boss">
+    <div class="boss-title">Asina, The Praetor’s Consort</div>
+    <img src="images/Asinia, The Praetor's Consort.jpg" alt="Asina, The Praetor’s Consort" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+		<div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Tomb of the Consort (Cemetery of the Eternals)</td>
+            <td>Asina’s Memorial Key Piece</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li>Gelo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: Draven, the Eternal Praetor -->
+<div class="boss">
+    <div class="boss-title">Draven, the Eternal Praetor</div>
+    <img src="images/Draven, the Eternal Praetor.jpg" alt="Draven, the Eternal Praetor" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Mausoleum of the Praetor (Cemetery of the Eternals)</td>
+            <td>Uncut Skill Gem</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3
+            <h3>Resistências</h3>
+            <ul>
+                <li>Fogo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: Lachlann of Endless Lament -->
+<div class="boss">
+    <div class="boss-title">Lachlann of Endless Lament</div>
+    <img src="images/Lachlann of Endless Lament.jpg" alt="Lachlann of Endless Lament" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type cold">Gelo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Cemetery of the Eternals</td>
+            <td>Uncut Skill Gem</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: The Crowbell -->
+<div class="boss">
+    <div class="boss-title">The Crowbell</div>
+    <img src="images/Crowbell.jpg" alt="The Crowbell" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Hunting Grounds</td>
+            <td>Book of Specialization (+2 passive points)</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: Vargir the Feral Mutt -->
+<div class="boss">
+    <div class="boss-title">Vargir the Feral Mutt</div>
+    <img src="images/Vargir the Feral Mutt.jpg" alt="Vargir the Feral Mutt" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Ogham Farmlands</td>
+            <td>Uncut Skill Gem</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: The King in the Mists -->
+<div class="boss">
+    <div class="boss-title">The King in the Mists</div>
+    <img src="images/The King in the Mists.jpg" alt="The King in the Mists" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type chaos">Caótico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Freythorn (Hunting Grounds)</td>
+            <td>Grembloom Skull (+30 Spirit)</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li>Caótico</li>
+            </ul>
+        </div>
+    </div>
+    <div class="note">precisa limpar todos os Altares para invocá-lo</div>
+</div>
+
+<!-- Boss: The Executioner -->
+<div class="boss">
+    <div class="boss-title">The Executioner</div>
+    <img src="images/The Executioner.jpg" alt="The Executioner" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Ogham Village</td>
+            <td>Uncut Support Gem</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li>Fogo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: Candlemass -->
+<div class="boss">
+    <div class="boss-title">Candlemass, the Living Rite</div>
+    <img src="images/Candlemass.jpg" alt="Candlemass" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Ogham Manor</td>
+            <td>Candlemass’ Essence (+20 Max Life)</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li>Fogo</li>
+                <li>Gelo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: Count Geonor -->
+<div class="boss">
+    <div class="boss-title">Count Geonor</div>
+    <img src="images/Count Geonor.jpg" alt="Count Geonor" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type cold">Gelo*</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Ogham Manor</td>
+            <td>Act 2 Unlocked</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li>Gelo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Ato 2 -->
+<br>
+<p>
+<div class="act-separator"></div>
+<h2 style="text-align: center; margin: 0;">ATO 2</h2>
+<div class="act-separator"></div>
+
+
+
+<!-- Rathbreaker -->
+<div class="boss">
+    <div class="boss-title">Rathbreaker</div>
+    <img src="images/Rathbreaker.jpg" alt="Rathbreaker" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Vastiri Outskirts</td>
+            <td>Uncut Skill Gem</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li>Fogo</li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li>Gelo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Rudja, the Dread Engineer -->
+<div class="boss">
+    <div class="boss-title">Rudja, the Dread Engineer</div>
+    <img src="images/Rudja.jpg" alt="Rudja, the Dread Engineer" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Mawdun Mine (Mawdun Quarry)</td>
+            <td>Uncut Skill Gem</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li>Gelo</li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li>Fogo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Balbala the Traitor -->
+<div class="boss">
+    <div class="boss-title">Balbala the Traitor</div>
+    <img src="images/Balbala.jpg" alt="Balbala the Traitor" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+        <div class="damage-type chaos">Caótico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Traitor’s Passage</td>
+            <td>Uncut Skill Gem</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li>Gelo</li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li>Fogo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: L'im the Impaler -->
+<div class="boss">
+    <div class="boss-title">L'im the Impaler</div>
+    <img src="images/L'im the Impaler.jpg" alt="L'im the Impaler" />
+    <div class="damage-types">
+        <div class="damage-type physical">Físico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>The Halani Gates</td>
+            <td>Rare Items</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li></li>
+            </ul>
+			
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Jamanra, the Risen King -->
+<div class="boss">
+    <div class="boss-title">Jamanra, the Risen King</div>
+    <img src="images/Jamanra.jpg" alt="Jamanra, the Risen King" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+		<div class="damage-type lightning">Elétrico*</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Cemetery of the Eternals</td>
+            <td>Uncut Skill Gem</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+                <li>Gelo</li>
+            </ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li>Fogo</li>
+                <li>Elétrico</li>
+            </ul>
+        </div>
+    </div>
+    <div class="note">Priorize resistência a Dano Elétrico</div>
+</div>
+
+<!-- Kabala, Constrictor Queen -->
+<div class="boss">
+    <div class="boss-title">Kabala, Constrictor Queen</div>
+    <img src="images/Kabala.jpg" alt="Kabala, Constrictor Queen" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Keth</td>
+            <td>Book of Specialization (+2 passive points)</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Gelo</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- The Ninth Treasure of Keth -->
+<div class="boss">
+    <div class="boss-title">The Ninth Treasure of Keth</div>
+    <img src="images/The Ninth Treasure of Keth.jpg" alt="The Ninth Treasure of Keth" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type lightning">Elétrico</div>
+    </div>
+    <table>
+        <tr>
+            <td>Localização</td>
+            <td>Recompensas</td>
+        </tr>
+        <tr>
+            <td>The Lost City - The Galleria</td>
+            <td>random jewel</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li>Gelo</li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Azarian, the Forsaken Son -->
+<div class="boss">
+    <div class="boss-title">Azarian, the Forsaken Son</div>
+    <img src="images/Azarian.jpg" alt="Azarian, the Forsaken Son" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <td>Localização</td>
+            <td>Recompensas</td>
+        </tr>
+        <tr>
+            <td>Buried Shrines (The Lost City/Keth)</td>
+            <td>Uncut Skill Gem, Essence of Water</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Iktab & Ekbab -->
+<div class="boss">
+    <div class="boss-title">Iktab & Ekbab</div>
+    <img src="images/Iktab-Ekbab.jpg" alt="Iktab & Ekbab" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+		<div class="damage-type lightning">Elétrico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Bone Pits (Mastodon Badlands)</td>
+            <td>Support Gem</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+    </div>
+	<div class="note">Só o mago tem resistência</div>
+</div>
+
+<!-- Zalmarath, the Colossus -->
+<div class="boss">
+    <div class="boss-title">Zalmarath, the Colossus</div>
+    <img src="images/Zalmarath.jpg" alt="Zalmarath, the Colossus" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+		<div class="damage-type lightning">Elétrico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Valley of the Titans (The Titan Grotto)</td>
+            <td>The Red Ruby</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li>Gelo</li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li>Fogo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Watchful Twins -->
+<div class="boss">
+    <div class="boss-title">Watchful Twins</div>
+    <img src="images/Watchful Twins.jpg" alt="Watchful Twins" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <td>Localização</td>
+            <td>Recompensas</td>
+        </tr>
+        <tr>
+            <td>Deshar</td>
+            <td>Djinn Barya</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+				<li>Gelo</li>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+    </div>
+	<div class="note">abutres Mugin e Hunin</div>
+</div>
+
+<!-- Torgul, the Defiler -->
+<div class="boss">
+    <div class="boss-title">Torgul, the Defiler</div>
+    <img src="images/Torgul.jpg" alt="Torgul, the Defiler" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+        <div class="damage-type chaos">Caótico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Spires of Deshar (Deshar)</td>
+            <td>Uncut Skill Gem, Lesser Jeweller’s Orb</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Sisters of Garukhan -->
+<div class="boss">
+    <div class="boss-title">Sisters of Garukhan</div>
+    <img src="images/Sisters of Garukhan.jpg" alt="Sisters of Garukhan" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type lightning">Elétrico</div>
+    </div>
+    <table>
+        <tr>
+            <td>Localização</td>
+            <td>Recompensas</td>
+        </tr>
+        <tr>
+            <td>The Spires of Deshar</td>
+            <td>+10% Lightning Resistance</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+				<li>Gelo</li>
+			</ul>
+        </div>
+    </div>
+	<div class="note">estátuas Kinarha</div>
+</div>
+
+<!-- Jamanra, the Abomination -->
+<div class="boss">
+    <div class="boss-title">Jamanra, the Abomination</div>
+    <img src="images/Jamanra, the Abomination.jpg" alt="Jamanra, the Abomination" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type lightning">Elétrico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Dreadnaught Vanguard (The Dreadnaught)</td>
+            <td>Act 3 Unlocked</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li>Gelo</li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Ato 3 -->
+
+<br>
+<div class="act-separator"></div>
+<h2 style="text-align: center; margin: 0;">ATO 3</h2>
+<div class="act-separator"></div>
+
+<!-- Rootdredge -->
+<div class="boss">
+    <div class="boss-title">Rootdredge</div>
+    <img src="images/Rootdredge.jpg" alt="Rootdredge" />
+    <div class="damage-types">
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Sandswept Marsh</td>
+            <td>Uncut Skill Gem</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li>Fogo</li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Gelo</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Mighty Silverfist -->
+<div class="boss">
+    <div class="boss-title">Mighty Silverfist</div>
+    <img src="images/mightysilverfist.jpg" alt="Mighty Silverfist" />
+    <div class="damage-types">
+        <div class="damage-type physical">Físico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Jungle Ruins</td>
+            <td>Book of Specialization (+2 passive points)</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Ignagduk, the Bog Witch -->
+<div class="boss">
+    <div class="boss-title">Ignagduk, the Bog Witch</div>
+    <img src="images/Ignagduk.jpg" alt="Ignagduk, the Bog Witch" />
+    <div class="damage-types">
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Azak Bog</td>
+            <td>Gemrot Skull (+30 Spirit)</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li>Gelo</li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Xyclucian, The Chimera -->
+<div class="boss">
+    <div class="boss-title">Xyclucian, The Chimera</div>
+    <img src="images/Xyclucian.jpg" alt="Xyclucian, The Chimera" />
+    <div class="damage-types">
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+		<div class="damage-type cold">Gelo</div>
+		<div class="damage-type lightning">Elétrico</div>
+        <div class="damage-type chaos">Caótico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Chimeral Wetlands</td>
+            <td>Uncut Skill Gem, Chimeral Inscribed Ultimatum (quest item)</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+				<li>Gelo</li>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Black Jaw, the Remnant -->
+<div class="boss">
+    <div class="boss-title">Blackjaw, the Remnant</div>
+    <img src="images/Blackjaw.jpg" alt="Blackjaw, the Remnant" />
+    <div class="damage-types">
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>The Oubliette (Jiquani’s Machinarium)</td>
+            <td>Flame Core (+10% to Fire Resistance)</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li>Gelo</li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Zicoatl, Warden of the Core -->
+<div class="boss">
+    <div class="boss-title">Zicoatl, Warden of the Core</div>
+    <img src="images/Zicoatl.jpg" alt="Zicoatl, Warden of the Core" />
+    <div class="damage-types">
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type lightning">Elétrico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Jiquani’s Machinarium</td>
+            <td>Uncut Skill Gem</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+				<li>Gelo</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: Mektul the Forgemaster -->
+<div class="boss">
+    <div class="boss-title">Mektul the Forgemaster</div>
+    <img src="images/Mektul.jpg" alt="Mektul the Forgemaster" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>The Molten Forge</td>
+            <td>The Hammer of Kamasa (Uncut Skill Gem), + Reforging Bench</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li>Gelo</li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Queen of Filth -->
+<div class="boss">
+    <div class="boss-title">The Queen of Filth</div>
+    <img src="images/QueenOfFilth.jpg" alt="The Queen of Filth" />
+    <div class="damage-types">
+        <div class="damage-type physical">Físico</div>
+		<div class="damage-type fire">Fogo</div>
+		<div class="damage-type chaos">Caótico*</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Localização Z</td>
+            <td>Recompensa Z</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Ketzuli, the High Priest of the Sun -->
+<div class="boss">
+    <div class="boss-title">Ketzuli, the High Priest of the Sun</div>
+    <img src="images/Ketzuli.jpg" alt="Ketzuli, the High Priest of the Sun" />
+    <div class="damage-types">
+		<div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Localização W</td>
+            <td>Recompensa W</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li>Gelo</li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Viper Napuatzi -->
+<div class="boss">
+    <div class="boss-title">Viper Napuatzi</div>
+    <img src="images/ViperNapuatzi.jpg" alt="Viper Napuatzi" />
+    <div class="damage-types">
+        <div class="damage-type physical">Físico</div>
+		<div class="damage-type fire">Fogo</div>
+		<div class="damage-type lightning">Elétrico</div>
+		<div class="damage-type chaos">Caótico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Utzaal</td>
+            <td>Uncut Support Gem</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+				<li>Gelo</li>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Doryani, the Royal Thaumaturge -->
+<div class="boss">
+    <div class="boss-title">Doryani, Royal Thaumaturge</div>
+    <img src="images/Doryani, Royal Thaumaturge.jpg" alt="Doryani, Royal Thaumaturge" />
+    <div class="damage-types">
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo**</div>
+		<div class="damage-type cold">Gelo*</div>
+		<div class="damage-type lightning">Elétrico***</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Testing Pit</td>
+            <td>Act 4 Unlocked</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+                <li>Fogo</li>
+				<li>Elétrico</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Ato 4 -->
+<p>
+<div class="act-separator"></div>
+<h2 style="text-align: center; margin: 0;">ATO 4</h2>
+<div class="act-separator"></div>
+<p>
+
+<!-- Boss: XXXXXXXX -->
+<div class="boss">
+    <div class="boss-title">XXXXXXXXXX</div>
+    <img src="images/XXXXX.jpg" alt="XXXXXXXXXX" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: XXXXXXXX -->
+<div class="boss">
+    <div class="boss-title">XXXXXXXXXX</div>
+    <img src="images/XXXXX.jpg" alt="XXXXXXXXXX" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: XXXXXXXX -->
+<div class="boss">
+    <div class="boss-title">XXXXXXXXXX</div>
+    <img src="images/XXXXX.jpg" alt="XXXXXXXXXX" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: XXXXXXXX -->
+<div class="boss">
+    <div class="boss-title">XXXXXXXXXX</div>
+    <img src="images/XXXXX.jpg" alt="XXXXXXXXXX" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: XXXXXXXX -->
+<div class="boss">
+    <div class="boss-title">XXXXXXXXXX</div>
+    <img src="images/XXXXX.jpg" alt="XXXXXXXXXX" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Ato 5 -->
+
+<div class="act-separator"></div>
+<h2 style="text-align: center; margin: 0;">ATO 5</h2>
+<div class="act-separator"></div>
+
+<!-- Boss: XXXXXXXX -->
+<div class="boss">
+    <div class="boss-title">XXXXXXXXXX</div>
+    <img src="images/XXXXX.jpg" alt="XXXXXXXXXX" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: XXXXXXXX -->
+<div class="boss">
+    <div class="boss-title">XXXXXXXXXX</div>
+    <img src="images/XXXXX.jpg" alt="XXXXXXXXXX" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: XXXXXXXX -->
+<div class="boss">
+    <div class="boss-title">XXXXXXXXXX</div>
+    <img src="images/XXXXX.jpg" alt="XXXXXXXXXX" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: XXXXXXXX -->
+<div class="boss">
+    <div class="boss-title">XXXXXXXXXX</div>
+    <img src="images/XXXXX.jpg" alt="XXXXXXXXXX" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: XXXXXXXX -->
+<div class="boss">
+    <div class="boss-title">XXXXXXXXXX</div>
+    <img src="images/XXXXX.jpg" alt="XXXXXXXXXX" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: XXXXXXXX -->
+<div class="boss">
+    <div class="boss-title">XXXXXXXXXX</div>
+    <img src="images/XXXXX.jpg" alt="XXXXXXXXXX" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+
+<!-- Trial of Chaos Bosses -->
+
+<div class="act-separator"></div>
+<h2 style="text-align: center; margin: 0;">Trial of Chaos Bosses</h2>
+<div class="act-separator"></div>
+
+<!-- Boss: Bahlak, the Sky Seer -->
+<div class="boss">
+    <div class="boss-title">Bahlak, the Sky Seer</div>
+    <img src="images/Bahlak, the Sky Seer.jpg" alt="Bahlak, the Sky Seer" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type lightning">Elétrico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Trial - Temple of Chaos</td>
+            <td>Trial of Chaos progression + Ascendancy Points</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li>Fogo</li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: Uxmal, the Beastlord -->
+<div class="boss">
+    <div class="boss-title">Uxmal, the Beastlord</div>
+    <img src="images/Uxmal, the Beastlord.jpg" alt="Uxmal, the Beastlord" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+		<div class="damage-type cold">Gelo</div>
+		<div class="damage-type lightning">Elétrico</div>
+		<div class="damage-type chaos">Caótico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Trial - Temple of Chaos</td>
+            <td>Trial of Chaos progression + Ascendancy Points</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+				<li>Gelo</li>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: Chetza, the Feathered Plague -->
+<div class="boss">
+    <div class="boss-title">Chetza, the Feathered Plague</div>
+    <img src="images/Chetza, the Feathered Plague.jpg" alt="Chetza, the Feathered Plague" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Trial - Temple of Chaos</td>
+            <td>Trial of Chaos progression + Ascendancy Points</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li>Fogo</li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Gelo</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Trial of Sekhemas Bosses -->
+<div class="act-separator"></div>
+<h2 style="text-align: center; margin: 0;">Trial of Sekhemas Bosses</h2>
+<div class="act-separator"></div>
+
+<!-- Boss: Rattlecage, the Earthbreaker -->
+<div class="boss">
+    <div class="boss-title">Rattlecage, the Earthbreaker</div>
+    <img src="images/Rattlecage, the Earthbreaker.jpg" alt="Rattlecage, the Earthbreaker" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Trial - Trial of Sekhemas</td>
+            <td>Floor completion + Ascendancy Points</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li>Gelo</li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: Terracotta Sentinels -->
+<div class="boss">
+    <div class="boss-title">Terracotta Sentinels</div>
+    <img src="images/Terracotta Sentinels.jpg" alt="Terracotta Sentinels" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+		<div class="damage-type cold">Gelo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Trial - Trial of Sekhemas</td>
+            <td>Floor completion + Ascendancy Points</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li>Gelo (Hadi)</li>
+				<li>Fogo (Rafiq)</li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo (Hadi)</li>
+				<li>Gelo (Rafiq)</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: Ashar, the Sand Mother -->
+<div class="boss">
+    <div class="boss-title">Ashar, the Sand Mother</div>
+    <img src="images/Ashar, the Sand Mother.jpg" alt="Ashar, the Sand Mother" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type chaos">Caótico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Trial - Trial of Sekhemas</td>
+            <td>Floor completion + Ascendancy Points</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li>Gelo</li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+
+<!-- Pinnacle/Atlas Bosses -->
+<div class="act-separator"></div>
+<h2 style="text-align: center; margin: 0;">Pinnacle/Atlas Bosses</h2>
+<div class="act-separator"></div>
+
+<!-- Boss: Zarokh, the Temporal -->
+<div class="boss">
+    <div class="boss-title">Zarokh, the Temporal</div>
+    <img src="images/Zarokh, the Temporal.jpg" alt="Zarokh, the Temporal" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Trial of the Sekhemas</td>
+            <td>Ascendancy Points + item único</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+				<li>Gelo</li>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: Xesht, We That Are One -->
+<div class="boss">
+    <div class="boss-title">Xesht, We That Are One</div>
+    <img src="images/Xesht, We That Are One.jpg" alt="Xesht, We That Are One" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+		<div class="damage-type fire">Fogo</div>
+        <div class="damage-type chaos">Caótico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Atlas - Breach</td>
+            <td></td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+				<li>Gelo</li>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+
+<!-- Boss: The Arbiter of Ash -->
+<div class="boss">
+    <div class="boss-title">The Arbiter of Ash</div>
+    <img src="images/The Arbiter of Ash.jpg" alt="The Arbiter of Ash" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+		<div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Atlas - The Burning Monolith</td>
+            <td>livro + item único</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+				<li>Gelo</li>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+
+<!-- Boss: The Trialmaster -->
+<div class="boss">
+    <div class="boss-title">The Trialmaster</div>
+    <img src="images/The Trialmaster.jpg" alt="The Trialmaster" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+		<div class="damage-type cold">Gelo</div>
+		<div class="damage-type lightning">Elétrico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Trial - Trialmaster's Tower</td>
+            <td>Ascendancy Points + item único</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+				<li>Gelo</li>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+
+<!-- Boss: Olroth, Origin of the Fall -->
+<div class="boss">
+    <div class="boss-title">Olroth, Origin of the Fall</div>
+    <img src="images/Olroth, Origin of the Fall.jpg" alt="Olroth, Origin of the Fall" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+		<div class="damage-type cold">Gelo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Atlas - High-level Expedition Logbooks (Kalguran Tomb)</td>
+            <td>livro + item único</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Gelo</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: Kosis, the Revelation -->
+<div class="boss">
+    <div class="boss-title">Kosis, the Revelation</div>
+    <img src="images/Kosis, the Revelation.jpg" alt="Kosis, the Revelation" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+		<div class="damage-type lightning">Elétrico</div>
+		<div class="damage-type chaos">Caótico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Delirium Maps or Higher Waves during a Simulacrum</td>
+            <td>livro + item único</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+				<li>Gelo</li>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: Omniphobia, Fear Manifest -->
+<div class="boss">
+    <div class="boss-title">Omniphobia, Fear Manifest</div>
+    <img src="images/Omniphobia, Fear Manifest.jpg" alt="Omniphobia, Fear Manifest" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Atlas - Higher Simulacrum Waves (Delirium)</td>
+            <td>livro + item único</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+				<li>Gelo</li>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+
+<!-- Boss: The King in the Mists -->
+<div class="boss">
+    <div class="boss-title">The King in the Mists</div>
+    <img src="images/The King in the Mists.jpg" alt="The King in the Mists" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type chaos">Caótico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Ritual Altars (Audience with the King)</td>
+            <td>livro + item único</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: The Pale Angel -->
+<div class="boss">
+    <div class="boss-title">The Pale Angel</div>
+    <img src="images/The Pale Angel.jpg" alt="The Pale Angel" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+		<div class="damage-type lightning">Elétrico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Atlas - Corrupted Nexus</td>
+            <td>item raro</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: The Skittermind -->
+<div class="boss">
+    <div class="boss-title">The Skittermind</div>
+    <img src="images/The Skittermind.jpg" alt="The Skittermind" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Atlas - Corrupted Nexus</td>
+            <td>item raro</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: The Eater of Flesh -->
+<div class="boss">
+    <div class="boss-title">The Eater of Flesh</div>
+    <img src="images/The Eater of Flesh.jpg" alt="The Eater of Flesh" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Atlas - Corrupted Nexus</td>
+            <td>livro</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+				<li>Gelo</li>
+				<li>Elétrico</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<!-- Boss: The Immured Fury -->
+<div class="boss">
+    <div class="boss-title">The Immured Fury</div>
+    <img src="images/The Immured Fury.jpg" alt="The Immured Fury" />
+    <div class="damage-types">Dano: 
+        <div class="damage-type physical">Físico</div>
+        <div class="damage-type fire">Fogo</div>
+    </div>
+    <table>
+        <tr>
+            <th>Localização</th>
+            <th>Recompensas</th>
+        </tr>
+        <tr>
+            <td>Atlas - Cleansed Maps</td>
+            <td>rare item</td>
+        </tr>
+    </table>
+    <div class="attributes">
+        <div class="attribute-column">
+            <h3>Fraquezas</h3>
+            <ul>
+				<li></li>
+			</ul>
+        </div>
+        <div class="attribute-column">
+            <h3>Resistências</h3>
+            <ul>
+				<li>Fogo</li>
+			</ul>
+        </div>
+    </div>
+</div>
+<p style="font-weight: bold;">Feito por grimgamer9 😎</p>
+</div>
+</body>
+</html>

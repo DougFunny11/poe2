@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>POE2 Mapas</title>
+<link rel="icon" href="images/map.png" type="image/png">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1b1b;
+    color: #ffffff;
+    margin: 0;
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  #title {
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  #description {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+  #searchInput {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    font-size: 1em;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #0d1b2a;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  th, td {
+    padding: 10px;
+    border: 1px solid #000;
+    text-align: left;
+  }
+  th {
+    background-color: #1b263b;
+    cursor: pointer; /* cursor pointer para indicar clicável */
+  }
+  /* cores layouts */
+  .layout-Linear { background-color: #228B22; } /* Verde */
+  .layout-Labirinto { background-color: #4B0082; } /* Roxo */
+  .layout-Aberto { background-color: #1E90FF; } /* Azul */
+
+  /* Classes navegação, backtracking, boss */
+  .nav-4 { background-color: #143b2f; }
+  .nav-3 { background-color: #163552; }
+  .nav-2 { background-color: #a48328; }
+  .nav-1 { background-color: #4c1b26; }
+
+  .back-4 { background-color: #143b2f; }
+  .back-3 { background-color: #163552; }
+  .back-2 { background-color: #a48328; }
+  .back-1 { background-color: #4c1b26; }
+
+  .boss-4 { background-color: #143b2f; }
+  .boss-3 { background-color: #163552; }
+  .boss-2 { background-color: #a48328; }
+  .boss-1 { background-color: #4c1b26; }
+
+  /* Tooltip */
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  .tooltiptext {
+    visibility: hidden;
+    width: 220px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -110px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+
+<h1>POE2 Mapas</h1>
+<div id="description">Lista de mapas do Atlas com detalhes como layouts, bosses etc.</div>
+
+<!-- Legenda para facilitar leitura -->
+<div style="display:flex; align-items:center; gap:30px; background-color:#1f2a3b; padding:10px; border-radius:8px;">
+  <!-- Navegação -->
+  <div style="display:flex; flex-direction:column; align-items:center; color:white; margin-right:20px;">
+    <em>Navegação</em>
+    <div style="display:flex; gap:15px; margin-top:8px;">
+      <div style="padding:8px 12px; background-color:#143b2f; color:white; border-radius:4px; min-width:100px; text-align:center;">
+        4 - Muito Fácil
+      </div>
+      <div style="padding:8px 12px; background-color:#163552; color:white; border-radius:4px; min-width:100px; text-align:center;">
+        3 - Fácil
+      </div>
+      <div style="padding:8px 12px; background-color:#a48328; color:white; border-radius:4px; min-width:100px; text-align:center;">
+        2 - Moderado
+      </div>
+      <div style="padding:8px 12px; background-color:#4c1b26; color:white; border-radius:4px; min-width:100px; text-align:center;">
+        1 - Difícil
+      </div>
+    </div>
+  </div>
+
+  <!-- Backtracking -->
+  <div style="display:flex; flex-direction:column; align-items:center; color:white; margin-right:20px;">
+    <em>Backtracking</em>
+    <div style="display:flex; gap:15px; margin-top:8px;">
+      <div style="padding:8px 12px; background-color:#143b2f; color:white; border-radius:4px; min-width:100px; text-align:center;">
+        4 - Nenhum
+      </div>
+      <div style="padding:8px 12px; background-color:#163552; color:white; border-radius:4px; min-width:100px; text-align:center;">
+        3 - Leve
+      </div>
+      <div style="padding:8px 12px; background-color:#a48328; color:white; border-radius:4px; min-width:100px; text-align:center;">
+        2 - Moderado
+      </div>
+      <div style="padding:8px 12px; background-color:#4c1b26; color:white; border-radius:4px; min-width:100px; text-align:center;">
+        1 - Pesado
+      </div>
+    </div>
+  </div>
+
+  <!-- Boss -->
+  <div style="display:flex; flex-direction:column; align-items:center; color:white;">
+    <em>Boss</em>
+    <div style="display:flex; gap:15px; margin-top:8px;">
+      <div style="padding:8px 12px; background-color:#143b2f; color:white; border-radius:4px; min-width:100px; text-align:center;">
+        4 - Muito Fácil
+      </div>
+      <div style="padding:8px 12px; background-color:#163552; color:white; border-radius:4px; min-width:100px; text-align:center;">
+        3 - Fácil
+      </div>
+      <div style="padding:8px 12px; background-color:#a48328; color:white; border-radius:4px; min-width:100px; text-align:center;">
+        2 - Moderado
+      </div>
+      <div style="padding:8px 12px; background-color:#4c1b26; color:white; border-radius:4px; min-width:100px; text-align:center;">
+        1 - Difícil
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- Campo de busca -->
+<input type="text" id="searchInput" placeholder="Busca" />
+
+<!-- Tabela -->
+<table id="mapsTable">
+  <thead>
+    <tr>
+      <th>Mapa</th>
+      <th>Navegação</th>
+      <th>Backtracking</th>
+      <th>Boss</th>
+      <th>Layout</th>
+      <th>Recomendado</th>
+      <th>Bioma</th>
+      <th>Bonus Drops</th>
+      <th>Boss Name</th> <!-- Nova coluna -->
+    </tr>
+  </thead>
+  <tbody>
+	
+	<!-- Headland -->
+<tr>
+  <td>
+    <div class="tooltip">
+          <a href="images/Headland.jpg" target="_blank" class="map-link">Headland</a>
+      <div class="tooltiptext">
+        <img src="images/Headland.jpg" alt="Headland" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-4">4</td>
+  <td class="back-3">3</td>
+  <td class="boss-2">2</td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Copper, Citadel</td>
+  <td></td>
+  <td class="boss-name">Hask, The Fallen Son</td>
+</tr>
+
+<!-- Creek -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Creek.jpg" target="_blank" class="map-link">Creek</a>
+      <div class="tooltiptext">
+        <img src="images/Creek.jpg" alt="Creek" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-4">4</td>
+  <td class="back-2">2</td>
+  <td class="boss-4">4</td>
+  <td class="layout-Aberto">Aberto</td>
+  <td>Breach</td>
+  <td>Forest</td>
+  <td>Jewels</td>
+  <td class="boss-name">Tierney, The Hateful</td>
+</tr>
+
+<!-- Slick -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Slick.jpg" target="_blank" class="map-link">Slick</a>
+      <div class="tooltiptext">
+        <img src="images/Slick.jpg" alt="Slick" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-4">4</td>
+  <td class="back-4">4</td>
+  <td class="boss-0"></td>
+  <td class="layout-Aberto">Aberto</td>
+  <td></td>
+  <td>Mountain, Desert</td>
+  <td>Gold, Barya & Ultimatum</td>
+  <td class="boss-name"></td>
+</tr>
+
+<!-- Ravine -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Ravine.jpg" target="_blank" class="map-link">Ravine</a>
+      <div class="tooltiptext">
+        <img src="images/Ravine.jpg" alt="Ravine" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-4">4</td>
+  <td class="back-4">4</td>
+  <td class="boss-0"></td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Mountain</td>
+  <td>Gold</td>
+  <td class="boss-name"></td>
+</tr>
+
+<!-- Bloodwood -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Bloodwood.jpg" target="_blank" class="map-link">Bloodwood</a>
+      <div class="tooltiptext">
+        <img src="images/Bloodwood.jpg" alt="Bloodwood" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-4">4</td>
+  <td class="back-2">2</td>
+  <td class="boss"></td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Forest</td>
+  <td>Jewels</td>
+  <td class="boss-name"></td>
+</tr>
+
+<!-- Rustbowl -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Rustbowl.jpg" target="_blank" class="map-link">Rustbowl</a>
+      <div class="tooltiptext">
+        <img src="images/Rustbowl.jpg" alt="Rustbowl" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-4">4</td>
+  <td class="back-2">2</td>
+  <td class="boss-4">4</td>
+  <td class="layout-Aberto">Aberto</td>
+  <td>Breach</td>
+  <td>Desert</td>
+  <td>Barya & Ultimatum</td>
+  <td class="boss-name">Gozen, Rebellious Rustlord</td>
+</tr>
+
+<!-- Savannah -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Savannah.jpg" target="_blank" class="map-link">Savannah</a>
+      <div class="tooltiptext">
+        <img src="images/Savannah.jpg" alt="Savannah" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-4">4</td>
+  <td class="back-3">3</td>
+  <td class="boss-3">3</td>
+  <td class="layout-Aberto">Aberto</td>
+  <td>Breach</td>
+  <td>Grass, Desert</td>
+  <td>Socket Currency, Barya & Ultimatum</td>
+  <td class="boss-name">Caedron, The Hyena Lord</td>
+</tr>
+
+<!-- Wetlands -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Wetlands.jpg" target="_blank" class="map-link">Wetlands</a>
+      <div class="tooltiptext">
+        <img src="images/Wetlands.jpg" alt="Wetlands" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-4">4</td>
+  <td class="back-3">3</td>
+  <td class="boss-3">3</td>
+  <td class="layout-Aberto">Aberto</td>
+  <td></td>
+  <td>Swamp</td>
+  <td>Basic Currency</td>
+  <td class="boss-name">Gorian, The Moving Earth</td>
+</tr>
+
+<!-- Steppe -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Steppe.jpg" target="_blank" class="map-link">Steppe</a>
+      <div class="tooltiptext">
+        <img src="images/Steppe.jpg" alt="Steppe" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-4">4</td>
+  <td class="back-4">4</td>
+  <td class="boss-0"></td>
+  <td class="layout-Aberto">Aberto</td>
+  <td>Breach</td>
+  <td>Grass</td>
+  <td>Socket Currency</td>
+  <td class="boss-name"></td>
+</tr>
+
+<!-- Lofty Summit -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Lofty Summit.jpg" target="_blank" class="map-link">Lofty Summit</a>
+      <div class="tooltiptext">
+        <img src="images/Lofty Summit.jpg" alt="Lofty Summit" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-4">4</td>
+  <td class="back-4">4</td>
+  <td class="boss-0"></td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Mountain</td>
+  <td>Gold</td>
+  <td class="boss-name"></td>
+</tr>
+
+<!-- Crimson Shores -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Crimson Shores.jpg" target="_blank" class="map-link">Crimson Shores</a>
+      <div class="tooltiptext">
+        <img src="images/Crimson Shores.jpg" alt="Crimson Shores" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-4">4</td>
+  <td class="back-4">4</td>
+  <td class="boss-0"></td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Water</td>
+  <td>Basic Currency</td>
+  <td class="boss-name"></td>
+</tr>
+
+<!-- Sandspit -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Sandspit.jpg" target="_blank" class="map-link">Sandspit</a>
+      <div class="tooltiptext">
+        <img src="images/Sandspit.jpg" alt="Sandspit" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-4">4</td>
+  <td class="back-4">4</td>
+  <td class="boss-0"></td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Water</td>
+  <td>Basic Currency</td>
+  <td class="boss-name"></td>
+</tr>
+
+<!-- Steaming Springs -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Steaming Springs.jpg" target="_blank" class="map-link">Steaming Springs</a>
+      <div class="tooltiptext">
+        <img src="images/Steaming Springs.jpg" alt="Steaming Springs" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-4">4</td>
+  <td class="back-4">4</td>
+  <td class="boss-4">4</td>
+  <td class="layout-Aberto">Aberto</td>
+  <td></td>
+  <td>Mountain, Grass, Forest</td>
+  <td>Gold, Socket Currency, Jewels</td>
+  <td class="boss-name">Manassa, The Serpent Queen</td>
+</tr>
+
+<!-- Riverside -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Riverside.jpg" target="_blank" class="map-link">Riverside</a>
+      <div class="tooltiptext">
+        <img src="images/Riverside.jpg" alt="Riverside" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-3">3</td>
+  <td class="back-3">3</td>
+  <td class="boss-1">1</td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Forest</td>
+  <td>Jewels</td>
+  <td class="boss-name">Zekoa, The Headcrusher</td>
+</tr>
+
+<!-- Crypt -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Crypt.jpg" target="_blank" class="map-link">Crypt</a>
+      <div class="tooltiptext">
+        <img src="images/Crypt.jpg" alt="Crypt" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-3">3</td>
+  <td class="back-3">3</td>
+  <td class="boss-4">4</td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Mountain, Grass, Desert</td>
+  <td>Gold, Socket Currency, Barya & Ultimatum</td>
+  <td class="boss-name">Meltwax, Mockery of Faith</td>
+</tr>
+
+<!-- Decay -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Decay.jpg" target="_blank" class="map-link">Decay</a>
+      <div class="tooltiptext">
+        <img src="images/Decay.jpg" alt="Decay" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-3">3</td>
+  <td class="back-2">2</td>
+  <td class="boss-2">2</td>
+  <td class="layout-Labirinto">Labirinto</td>
+  <td></td>
+  <td>Grass, Forest, Swamp</td>
+  <td>Socket Currency, Jewels, Basic Currency</td>
+  <td class="boss-name">The Fungus Behemoth</td>
+</tr>
+
+<!-- Fortress -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Fortress.jpg" target="_blank" class="map-link">Fortress</a>
+      <div class="tooltiptext">
+        <img src="images/Fortress.jpg" alt="Fortress" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-3">3</td>
+  <td class="back-2">2</td>
+  <td class="boss-1">1</td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Desert</td>
+  <td>Barya & Ultimatum</td>
+  <td class="boss-name">Pirasha, The Forgotten Prisoner</td>
+</tr>
+
+<!-- Augury -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Augury.jpg" target="_blank" class="map-link">Augury</a>
+      <div class="tooltiptext">
+        <img src="images/Augury.jpg" alt="Augury" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-3">3</td>
+  <td class="back-1">1</td>
+  <td class="boss-0"></td>
+  <td class="layout-Labirinto">Labirinto</td>
+  <td></td>
+  <td>Grass, Forest, Swamp</td>
+  <td>Socket Currency, Jewels, Basic Currency</td>
+  <td class="boss-name"></td>
+</tr>
+
+<!-- Penitentiary -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Penitentiary.jpg" target="_blank" class="map-link">Penitentiary</a>
+      <div class="tooltiptext">
+        <img src="images/Penitentiary.jpg" alt="Penitentiary" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-3">3</td>
+  <td class="back-1">1</td>
+  <td class="boss-2">2</td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Iron, Citadel</td>
+  <td>Incarnation of Death</td>
+  <td class="boss-name">Incarnation of Death</td>
+</tr>
+
+<!-- Forge -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Forge.jpg" target="_blank" class="map-link">Forge</a>
+      <div class="tooltiptext">
+        <img src="images/Forge.jpg" alt="Forge" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-3">3</td>
+  <td class="back-2">2</td>
+  <td class="boss-2">2</td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Mountain, Desert</td>
+  <td>Gold, Barya & Ultimatum</td>
+  <td class="boss-name">Vastweld, The Colossal Guardian</td>
+</tr>
+
+<!-- Cenotes -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Cenotes.jpg" target="_blank" class="map-link">Cenotes</a>
+      <div class="tooltiptext">
+        <img src="images/Cenotes.jpg" alt="Cenotes" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-3">3</td>
+  <td class="back-3">3</td>
+  <td class="boss-0"></td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Mountain</td>
+  <td>Gold</td>
+  <td class="boss-name"></td>
+</tr>
+
+<!-- Willow -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Willow.jpg" target="_blank" class="map-link">Willow</a>
+      <div class="tooltiptext">
+        <img src="images/Willow.jpg" alt="Willow" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-3">3</td>
+  <td class="back-3">3</td>
+  <td class="boss-3">3</td>
+  <td class="layout-Aberto">Aberto</td>
+  <td>Breach</td>
+  <td>Forest</td>
+  <td>Jewels</td>
+  <td class="boss-name">Connal, The Tormented</td>
+</tr>
+
+<!-- Oasis -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Oasis.jpg" target="_blank" class="map-link">Oasis</a>
+      <div class="tooltiptext">
+        <img src="images/Oasis.jpg" alt="Oasis" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-3">3</td>
+  <td class="back-3">3</td>
+  <td class="boss-0"></td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Desert</td>
+  <td>Barya & Ultimatum</td>
+  <td class="boss-name"></td>
+</tr>
+
+<!-- The Copper Citadel -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/The Copper Citadel.jpg" target="_blank" class="map-link">The Copper Citadel</a>
+      <div class="tooltiptext">
+        <img src="images/The Copper Citadel.jpg" alt="The Copper Citadel" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-3">3</td>
+  <td class="back-2">2</td>
+  <td class="boss-1">1</td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Copper, Citadel</td>
+  <td></td>
+  <td class="boss-name">Jamanra, the Abomination</td>
+</tr>
+
+<!-- Blooming Field -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Blooming Field.jpg" target="_blank" class="map-link">Blooming Field</a>
+      <div class="tooltiptext">
+        <img src="images/Blooming Field.jpg" alt="Blooming Field" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-3">3</td>
+  <td class="back-2">2</td>
+  <td class="boss-4">4</td>
+  <td class="layout-Aberto">Aberto</td>
+  <td></td>
+  <td>Grass, Forest</td>
+  <td>Socket Currency, Jewels</td>
+  <td class="boss-name">The Black Crow</td>
+</tr>
+
+<!-- Sun Temple -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Sun Temple.jpg" target="_blank" class="map-link">Sun Temple</a>
+      <div class="tooltiptext">
+        <img src="images/Sun Temple.jpg" alt="Sun Temple" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-3">3</td>
+  <td class="back-3">3</td>
+  <td class="boss-3">3</td>
+  <td class="layout-Labirinto">Labirinto</td>
+  <td></td>
+  <td>Stone, Citadel</td>
+  <td></td>
+  <td class="boss-name">Tonqui, Seer of the Sun</td>
+</tr>
+
+<!-- Burial Bog -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Burial Bog.jpg" target="_blank" class="map-link">Burial Bog</a>
+      <div class="tooltiptext">
+        <img src="images/Burial Bog.jpg" alt="Burial Bog" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-3">3</td>
+  <td class="back-3">3</td>
+  <td class="boss-4">4</td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Swamp</td>
+  <td>Basic Currency</td>
+  <td class="boss-name">Grudgelash, Vile Ent</td>
+</tr>
+
+<!-- Gothic City -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Gothic City.jpg" target="_blank" class="map-link">Gothic City</a>
+      <div class="tooltiptext">
+        <img src="images/Gothic City.jpg" alt="Gothic City" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-3">3</td>
+  <td class="back-2">2</td>
+  <td class="boss-3">3</td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Iron, Citadel</td>
+  <td></td>
+  <td class="boss-name">Asinia, The Praetor's Consort</td>
+</tr>
+
+<!-- Vaal City -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Vaal City.jpg" target="_blank" class="map-link">Vaal City</a>
+      <div class="tooltiptext">
+        <img src="images/Vaal City.jpg" alt="Vaal City" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-3">3</td>
+  <td class="back-2">2</td>
+  <td class="boss-1">1</td>
+  <td class="layout-Labirinto">Labirinto</td>
+  <td></td>
+  <td>Stone, Citadel</td>
+  <td></td>
+  <td class="boss-name">Viper Napuatzi</td>
+</tr>
+
+<!-- Channel -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Channel.jpg" target="_blank" class="map-link">Channel</a>
+      <div class="tooltiptext">
+        <img src="images/Channel.jpg" alt="Channel" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-2">2</td>
+  <td class="back-2">2</td>
+  <td class="boss-2">2</td>
+  <td class="layout-Labirinto">Labirinto</td>
+  <td></td>
+  <td>Copper, Citadel</td>
+  <td></td>
+  <td class="boss-name">Hask, The Fallen Son</td>
+</tr>
+
+<!-- Woodland -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Woodland.jpg" target="_blank" class="map-link">Woodland</a>
+      <div class="tooltiptext">
+        <img src="images/Woodland.jpg" alt="Woodland" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-2">2</td>
+  <td class="back-2">2</td>
+  <td class="boss-3">3</td>
+  <td class="layout-Labirinto">Labirinto</td>
+  <td></td>
+  <td>Forest</td>
+  <td>Jewels</td>
+  <td class="boss-name">2x Tierney, The Hateful</td>
+</tr>
+
+<!-- Abyss -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Abyss.jpg" target="_blank" class="map-link">Abyss</a>
+      <div class="tooltiptext">
+        <img src="images/Abyss.jpg" alt="Abyss" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-2">2</td>
+  <td class="back-2">2</td>
+  <td class="boss-3">3</td>
+  <td class="layout-Labirinto">Labirinto</td>
+  <td></td>
+  <td>Mountain, Desert</td>
+  <td>Gold, Barya & Ultimatum</td>
+  <td class="boss-name">Zar Wali, The Bone Tyrant</td>
+</tr>
+
+<!-- Backwash -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Backwash.jpg" target="_blank" class="map-link">Backwash</a>
+      <div class="tooltiptext">
+        <img src="images/Backwash.jpg" alt="Backwash" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-2">2</td>
+  <td class="back-3">3</td>
+  <td class="boss-3">3</td>
+  <td class="layout-Aberto">Aberto</td>
+  <td></td>
+  <td>Forest, Swamp</td>
+  <td>Jewels, Basic Currency</td>
+  <td class="boss-name">Yaota, The Loathsome</td>
+</tr>
+
+<!-- Necropolis -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Necropolis.jpg" target="_blank" class="map-link">Necropolis</a>
+      <div class="tooltiptext">
+        <img src="images/Necropolis.jpg" alt="Necropolis" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-2">2</td>
+  <td class="back-2">2</td>
+  <td class="boss-2">2</td>
+  <td class="layout-Labirinto">Labirinto</td>
+  <td></td>
+  <td>Iron, Citadel</td>
+  <td></td>
+  <td class="boss-name">Tycho, The Black Praetor</td>
+</tr>
+
+<!-- Hive -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Hive.jpg" target="_blank" class="map-link">Hive</a>
+      <div class="tooltiptext">
+        <img src="images/Hive.jpg" alt="Hive" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-2">2</td>
+  <td class="back-2">2</td>
+  <td class="boss"></td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Desert</td>
+  <td>Barya & Ultimatum</td>
+  <td class="boss-name"></td>
+</tr>
+
+<!-- Sump -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Sump.jpg" target="_blank" class="map-link">Sump</a>
+      <div class="tooltiptext">
+        <img src="images/Sump.jpg" alt="Sump" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-2">2</td>
+  <td class="back-1">1</td>
+  <td class="boss-2">2</td>
+  <td class="layout-Aberto">Aberto</td>
+  <td></td>
+  <td>Swamp</td>
+  <td>Basic Currency</td>
+  <td class="boss-name">The Eater Of Children</td>
+</tr>
+
+<!-- Grimhaven -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Grimhaven.jpg" target="_blank" class="map-link">Grimhaven</a>
+      <div class="tooltiptext">
+        <img src="images/Grimhaven.jpg" alt="Grimhaven" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-2">2</td>
+  <td class="back-2">2</td>
+  <td class="boss-4">4</td>
+  <td class="layout-Aberto">Aberto</td>
+  <td></td>
+  <td>Iron, Citadel</td>
+  <td></td>
+  <td class="boss-name">Asinia, The Praetor's Consort</td>
+</tr>
+
+<!-- Hidden Grotto -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Hidden Grotto.jpg" target="_blank" class="map-link">Hidden Grotto</a>
+      <div class="tooltiptext">
+        <img src="images/Hidden Grotto.jpg" alt="Hidden Grotto" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-2">2</td>
+  <td class="back-1">1</td>
+  <td class="boss"></td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Mountain, Grass, Forest, Swamp</td>
+  <td>Gold, Socket Currency, Jewels, Basic Currency</td>
+  <td class="boss-name"></td>
+</tr>
+
+<!-- Spider Woods -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Spider Woods.jpg" target="_blank" class="map-link">Spider Woods</a>
+      <div class="tooltiptext">
+        <img src="images/Spider Woods.jpg" alt="Spider Woods" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-2">2</td>
+  <td class="back-2">2</td>
+  <td class="boss-3">3</td>
+  <td class="layout-Aberto">Aberto</td>
+  <td></td>
+  <td>Forest</td>
+  <td>Jewels</td>
+  <td class="boss-name">Rootgraps, The Hateful Forest</td>
+</tr>
+
+<!-- Sulphuric Caverns -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Sulphuric Caverns.jpg" target="_blank" class="map-link">Sulphuric Caverns</a>
+      <div class="tooltiptext">
+        <img src="images/Sulphuric Caverns.jpg" alt="Sulphuric Caverns" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-2">2</td>
+  <td class="back-3">3</td>
+  <td class="boss-4">4</td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Mountain, Swamp, Desert</td>
+  <td>Gold, Basic Currency, Barya & Ultimatum</td>
+  <td class="boss-name">Lord of The Pit + Bone Collosus</td>
+</tr>
+
+<!-- Deserted -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Deserted.jpg" target="_blank" class="map-link">Deserted</a>
+      <div class="tooltiptext">
+        <img src="images/Deserted.jpg" alt="Deserted" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-2">2</td>
+  <td class="back-2">2</td>
+  <td class="boss"></td>
+  <td class="layout-Aberto">Aberto</td>
+  <td></td>
+  <td>Desert</td>
+  <td>Barya & Ultimatum</td>
+  <td class="boss-name"></td>
+</tr>
+
+<!-- The Iron Citadel -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/The Iron Citadel.jpg" target="_blank" class="map-link">The Iron Citadel</a>
+      <div class="tooltiptext">
+        <img src="images/The Iron Citadel.jpg" alt="The Iron Citadel" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-2">2</td>
+  <td class="back-3">3</td>
+  <td class="boss-1">1</td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Iron, Citadel</td>
+  <td></td>
+  <td class="boss-name">The Iron Count</td>
+</tr>
+
+<!-- Seepage -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Seepage.jpg" target="_blank" class="map-link">Seepage</a>
+      <div class="tooltiptext">
+        <img src="images/Seepage.jpg" alt="Seepage" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-1">1</td>
+  <td class="back-1">1</td>
+  <td class="boss-2">2</td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Grass, Forest, Swamp</td>
+  <td>Socket Currency, Jewels, Basic Currency</td>
+  <td class="boss-name">The Fungus Behemoth</td>
+</tr>
+
+<!-- Mire -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Mire.jpg" target="_blank" class="map-link">Mire</a>
+      <div class="tooltiptext">
+        <img src="images/Mire.jpg" alt="Mire" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-1">1</td>
+  <td class="back-1">1</td>
+  <td class="boss-4">4</td>
+  <td class="layout-Labirinto">Labirinto</td>
+  <td></td>
+  <td>Forest, Swamp</td>
+  <td>Jewels, Basic Currency</td>
+  <td class="boss-name">Riona, Winter's Cackle</td>
+</tr>
+
+<!-- The Stone Citadel -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/The Stone Citadel.jpg" target="_blank" class="map-link">The Stone Citadel</a>
+      <div class="tooltiptext">
+        <img src="images/The Stone Citadel.jpg" alt="The Stone Citadel" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-1">1</td>
+  <td class="back-1">1</td>
+  <td class="boss-1">1</td>
+  <td class="layout-Labirinto">Labirinto</td>
+  <td></td>
+  <td>Copper, Citadel</td>
+  <td></td>
+  <td class="boss-name">Doryani, Royal Thaumaturge</td>
+</tr>
+
+<!-- Vaal Factory -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Vaal Factory.jpg" target="_blank" class="map-link">Vaal Factory</a>
+      <div class="tooltiptext">
+        <img src="images/Vaal Factory.jpg" alt="Vaal Factory" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-1">1</td>
+  <td class="back-1">1</td>
+  <td class="boss-3">3</td>
+  <td class="layout-Linear">Linear</td>
+  <td></td>
+  <td>Grass, City</td>
+  <td>Socket Currency</td>
+  <td class="boss-name">Tetzcatl, The Blazing Guardian</td>
+</tr>
+
+<!-- Vaal Foundry -->
+<tr>
+  <td>
+    <div class="tooltip">
+      <a href="images/Vaal Foundry.jpg" target="_blank" class="map-link">Vaal Foundry</a>
+      <div class="tooltiptext">
+        <img src="images/Vaal Foundry.jpg" alt="Vaal Foundry" style="max-width: 120%; height: auto;">
+      </div>
+    </div>
+  </td>
+  <td class="nav-1">1</td>
+  <td class="back-1">1</td>
+  <td class="boss-3">3</td>
+  <td class="layout-Labirinto">Labirinto</td>
+  <td></td>
+  <td>Stone, Citadel</td>
+  <td></td>
+  <td class="boss-name">Gulzal, The Living Furnace</td>
+</tr>
+  </tbody>
+</table>
+
+<script>
+  const searchInput = document.getElementById('searchInput');
+  const tbody = document.querySelector('#mapsTable tbody');
+
+  // Busca
+  searchInput.addEventListener('keyup', () => {
+    const filter = searchInput.value.toLowerCase();
+    Array.from(tbody.rows).forEach(row => {
+      const cells = row.cells;
+      const match = Array.from(cells).some(cell => 
+        (cell.textContent || cell.innerText).toLowerCase().includes(filter)
+      );
+      row.style.display = match ? '' : 'none';
+    });
+  });
+
+  // Estado de ordenação por coluna
+  const sortStates = {};
+
+  function sortTable(n) {
+    const table = document.getElementById("mapsTable");
+    const tbody = table.tBodies[0];
+    const rowsArray = Array.from(tbody.rows);
+    
+    // Colunas numéricas: Navegação(1), Backtracking(2), Boss(3)
+    const numericColumns = [1, 2, 3];
+
+    const currentState = sortStates[n] || 'asc';
+
+    rowsArray.sort((a, b) => {
+      // Verifica se a linha tem a quantidade esperada de células
+      if (!a.cells[n] || !b.cells[n]) return 0; // evita erro se não tiver
+      
+      const aText = a.cells[n].innerText || a.cells[n].textContent;
+      const bText = b.cells[n].innerText || b.cells[n].textContent;
+
+      const aVal = aText !== undefined ? aText.trim() : "";
+      const bVal = bText !== undefined ? bText.trim() : "";
+
+      if (numericColumns.includes(n)) {
+        const aNum = aVal === "" ? 0 : parseInt(aVal);
+        const bNum = bVal === "" ? 0 : parseInt(bVal);
+        return currentState === 'asc' ? aNum - bNum : bNum - aNum;
+      } else {
+        // Ordena alfabeticamente
+        const aStr = aVal.toLowerCase();
+        const bStr = bVal.toLowerCase();
+        if (aStr < bStr) return currentState === 'asc' ? -1 : 1;
+        if (aStr > bStr) return currentState === 'asc' ? 1 : -1;
+        return 0;
+      }
+    });
+
+    // Reinsere as linhas ordenadas
+    rowsArray.forEach(row => tbody.appendChild(row));
+
+    // Alterna o estado de ordenação
+    sortStates[n] = currentState === 'asc' ? 'desc' : 'asc';
+  }
+
+  // Adiciona evento aos cabeçalhos
+  document.querySelectorAll("th").forEach((header, index) => {
+    header.style.cursor = "pointer";
+    header.addEventListener("click", () => {
+      sortTable(index);
+    });
+  });
+</script>
+<br>
+<div class="made-by">Feito por grimgamer9 <img src="images/swag.png" alt="swag" height="15"></div>
+</body>
+</html>

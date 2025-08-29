@@ -7,7 +7,9 @@
 <link rel="icon" href="images/map.png" type="image/png">
 <style>
 	:root {
-		--hyperlink: #007bff; /* Cor para hyperlinks */
+	--dark-hyperlink: #3399FF; /* ou outra cor desejada */
+	}
+
   body {
     font-family: Arial, sans-serif;
     background-color: #1a1b1b;
@@ -105,6 +107,11 @@
     visibility: visible;
     opacity: 1;
   }
+  a {
+            color: var(--dark-hyperlink); /* Cor padrão do hyperlink no modo escuro */
+            text-decoration: none; /* Remove o sublinhado */
+        }
+		
 </style>
 </head>
 <body>
@@ -1211,5 +1218,4 @@
 <br>
 <div class="made-by">Feito por grimgamer9 <img src="images/swag.png" alt="swag" height="15"></div>
 </body>
-
 </html>

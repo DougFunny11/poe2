@@ -178,7 +178,7 @@
             text-align: center;
             border-radius: 5px;
             margin: 5px 0;          /* Margem compacta entre os botões */
-			margin-left: 20px;     /* Margem a esquerda */
+			margin-left: 20px;
             border: 2px solid transparent; 
             transition: border-color 0.3s, background-color 0.3s; 
 			font-size: 15px;
@@ -577,7 +577,7 @@
 		<br>
 		<label class="task-item">
 			<input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-			<span class="tooltip">Encontre <span class="location">Mausoleum of the Praetor</span>, entre, mate <span class="mob">Draven, Eternal Praetor</span>, colete chave 2/2 entre no portal que abriu
+			<span class="tooltip">Encontre <span class="location">Mausoleum of the Praetor</span>, entre, mate <span class="mob">Draven, Eternal Praetor</span>, colete chave 2/2
 			<span class="tooltiptext">
             <img src="images/mausoleumofthepraetor.jpg" alt="Mausoleum of The Praetor" style="max-width: 130%; height: auto;">
             <br>
@@ -591,6 +591,11 @@
 			</span>
 			</span>
 		</label>
+		<br>
+		<label class="task-item">
+            <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
+            (Opcional) Em <span class="location">Mausoleum of the Praetor</span> mate o mini-boss e looteie sua Chest, Reward: <span class="recompensa"> level 4 Uncut Spirit Gem</span> + <span class="recompensa"> item raro</span>
+        </label>
         <br>
         <label class="task-item">
             <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
@@ -922,10 +927,15 @@
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
         Encontre e mate <span class="mob">Balbala, the Traitor</span>, dropa item para a ascendência em Trial of Sekhemas. Reward: <span class="recompensastats">Djinn Barya</span>
     </label>
+	<br>
+	<label class="task-item">
+        <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
+        (Opcional) Em six sisters(escadaria após o checkpoint, antes de Halani Gates) looteie Bell Chest Reward: <span class="recompensa">level 6 Uncut Skill Gem</span> + <span class="recompensa">item raro(?)</span>
+    </label>
     <br>
     <label class="task-item">
         <input type="checkbox" onchange="this.parentElement.classList.toggle('checked', this.checked)"> 
-        Encontre a entrada para <span class="location">The Halani Gates</span>
+        Em six sisters encontre e siga para <span class="location">The Halani Gates</span>
     </label>
     <br>
     <div class="task-item location tooltip">
@@ -1360,7 +1370,9 @@
 			<span class="tooltiptext">
 			<img src="images/dreadnoughtvanguard.jpg" alt="Dreadnought Vanguard" style="max-width: 100%; height: auto;">
 			<br>
-				Sentido oposto da entrada, evite as bordas, equipe lightning resistance.
+				Sentido oposto da entrada, evite as bordas.
+				<br>
+				Dica: consulte o bestiario.
 				<br>
 			</span>
 	</div>
@@ -2164,3 +2176,4 @@
     </script>
 </body>
 </html>
+
